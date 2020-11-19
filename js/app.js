@@ -7,9 +7,9 @@ const show = document.querySelector('.show');
 const ul = phrase.querySelector('ul');
 const lis = ul.children;
 const ol = scoreboard.querySelector('ol');
-const firstChild = ol.firstElementChild;
 const h2 = overlay.querySelector('h2');
 const button = overlay.querySelector('a');
+let livesLoss = 0;
 
 // initializing 5 content into the array
 let phraseArray = [
@@ -89,6 +89,7 @@ function playerWin(){
     clearLI();
     clearHeart();
     createHeart();
+    livesLoss = 0;
     overlay.style.display = '';
     overlay.style.backgroundColor = 'green';
     h2.textContent = 'You Won!';
@@ -99,6 +100,7 @@ function playerLose(){
     clearLI();
     clearHeart();
     createHeart();
+    livesLoss = 0;
     overlay.style.display = '';
     overlay.style.backgroundColor = 'red';
     h2.textContent = 'You Lose!';
@@ -125,6 +127,8 @@ overlay.addEventListener('click', (e) => {
 
 keyboard.addEventListener('click', (e) => {
     let found = false;
+    const olList = ol.children;
+    const heartImg = olList[livesLoss].querySelector('img');
     if(e.target.tagName === 'BUTTON'){
         if(e.target.className === 'chosen'){
             alert('You chose that word already');
@@ -137,7 +141,8 @@ keyboard.addEventListener('click', (e) => {
                 }
             }
             if(found === false){
-                ol.removeChild(ol.firstElementChild);
+                heartImg.src = "images/lostHeart.png";
+                livesLoss++;
             }
         }
     }
@@ -147,7 +152,7 @@ keyboard.addEventListener('click', (e) => {
     // else keep going
     if(checkWin()){
         playerWin();
-    } else if(ol.firstElementChild === null){
+    } else if(livesLoss === 5){
         playerLose();
     } else {
         // keep going
