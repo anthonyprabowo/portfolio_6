@@ -3,6 +3,7 @@ const keyboard = document.getElementById('qwerty');
 const keyrow = document.getElementsByClassName('keyrow');
 const phrase = document.getElementById('phrase');
 const scoreboard = document.getElementById('scoreboard');
+const show = document.querySelector('.show');
 const ul = phrase.querySelector('ul');
 const lis = ul.children;
 const ol = scoreboard.querySelector('ol');
@@ -44,6 +45,12 @@ function createHeart(){
     }
 }
 
+function clearHeart(){
+    while(ol.firstElementChild !== null){
+        ol.removeChild(ol.firstElementChild);
+    }
+}
+
 function restoreHeart(){
     for(let i = 0; i < 5; i++){
         scoreboard
@@ -80,6 +87,7 @@ function checkWin(){
 
 function playerWin(){
     clearLI();
+    clearHeart();
     createHeart();
     overlay.style.display = '';
     overlay.style.backgroundColor = 'green';
@@ -89,6 +97,7 @@ function playerWin(){
 
 function playerLose(){
     clearLI();
+    clearHeart();
     createHeart();
     overlay.style.display = '';
     overlay.style.backgroundColor = 'red';
@@ -132,7 +141,6 @@ keyboard.addEventListener('click', (e) => {
             }
         }
     }
-
     // check game condition
     // if player guess all words - they win
     // else if player lose all their hearts, they lose
