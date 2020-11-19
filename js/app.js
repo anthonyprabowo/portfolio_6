@@ -9,7 +9,6 @@ const ol = scoreboard.querySelector('ol');
 const firstChild = ol.firstElementChild;
 const h2 = overlay.querySelector('h2');
 const button = overlay.querySelector('a');
-let gamePhrase = '';
 
 // initializing 5 content into the array
 let phraseArray = [
@@ -26,12 +25,38 @@ function createLI(text) {
     ul.appendChild(li);
 }
 
+function clearLI(){
+    while(ul.firstElementChild !== null){
+        ul.removeChild(ul.firstElementChild);
+    }
+}
+
+function createHeart(){
+    for(let i = 0; i < 5; i++){
+        const heartLi = document.createElement('li');
+        heartLi.className = 'tries';
+        const heartImg = document.createElement('img');
+        heartImg['src'] = "images/liveHeart.png";
+        heartImg['height'] = 35;
+        heartImg['width'] = 30;
+        heartLi.appendChild(heartImg);
+        ol.appendChild(heartLi);
+    }
+}
+
+function restoreHeart(){
+    for(let i = 0; i < 5; i++){
+        scoreboard
+    }
+}
+
 function getRandomPhrase(arr){
     const randomNumber = Math.floor(Math.random()*5);
     return arr[randomNumber];
 }
 
 function createPhraseDisplay(){
+    let gamePhrase = '';
     // getting one random phrases from the array
     gamePhrase = getRandomPhrase(phraseArray);
     for(let i = 0; i < gamePhrase.length; i++){
@@ -54,6 +79,8 @@ function checkWin(){
 }
 
 function playerWin(){
+    clearLI();
+    createHeart();
     overlay.style.display = '';
     overlay.style.backgroundColor = 'green';
     h2.textContent = 'You Won!';
@@ -61,10 +88,13 @@ function playerWin(){
 }
 
 function playerLose(){
+    clearLI();
+    createHeart();
     overlay.style.display = '';
     overlay.style.backgroundColor = 'red';
     h2.textContent = 'You Lose!';
     button.textContent = 'Play Again';
+    
 }
 
 function buttonReset(){
