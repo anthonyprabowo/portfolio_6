@@ -37,9 +37,22 @@ li, ol, ul {
 h2 {
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Caveat','Open Sans', sans-serif;
   font-size: var(--font-size-large);
   margin: 0;
+}
+
+h3 {
+  font-family: 'Caveat','Open Sans', sans-serif;
+  font-size: 40px; 
+}
+
+p {
+  font-family: 'Patrick Hand',' Open Sans', sans-serif;
+  font-size: var(--font-size-medium);
+  margin: 30px auto;
+  text-align: center;
+  width: 40%;
 }
 
 button {
@@ -68,6 +81,7 @@ button {
   width: 100%;
   padding: 10px;
 }
+
 
 /* Title */
 
@@ -165,6 +179,7 @@ button {
 
 .start a {
   color: var(--color-win);
+  box-shadow: 3px 3px 4px var(--color-win);
 }
 
 .win {

@@ -85,26 +85,50 @@ function checkWin(){
     return true;
 }
 
+function removeP(){
+    const p = overlay.querySelector('p');
+    if(p !== null){
+        overlay.removeChild(p);
+    } else {
+        // don't do anything
+    }
+}
+
+function removeh3(){
+    const h3 = overlay.querySelector('h3');
+    if(h3 !== null){
+        overlay.removeChild(h3);
+    } else {
+        // do nothing since h3 doesn't exist yet
+    }
+}
+
 function playerWin(){
     clearLI();
     clearHeart();
     createHeart();
     livesLoss = 0;
+    removeP();
+    const h3 = document.createElement('h3');
+    h3.textContent = 'You won!';
     overlay.style.display = '';
-    overlay.style.backgroundColor = 'green';
-    h2.textContent = 'You Won!';
+    overlay.className = 'win';
     button.textContent = 'Play Again';
+    overlay.appendChild(h3);
 }
 
 function playerLose(){
     clearLI();
     clearHeart();
     createHeart();
+    removeP();
     livesLoss = 0;
+    const h3 = document.createElement('h3');
+    h3.textContent = 'You lose!';
     overlay.style.display = '';
-    overlay.style.backgroundColor = 'red';
-    h2.textContent = 'You Lose!';
+    overlay.className = 'lose';
     button.textContent = 'Play Again';
+    overlay.appendChild(h3);
     
 }
 
@@ -122,6 +146,7 @@ overlay.addEventListener('click', (e) => {
         overlay.style.display = 'none';
         createPhraseDisplay();
         buttonReset();
+        removeh3();
     }
 });
 
